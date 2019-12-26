@@ -16,7 +16,7 @@ docker-compose down
 
 | Operation | Standard tooling | Kafkacat |
 | ---       | ---              |  -----   |
-| Describe cluster | `kafka-topics --describe` | `kafkacat -L` |
+| Describe topics  | `kafka-topics --describe` | `kafkacat -L` |
 | Consume messages | `kafka-console-consumer`  | `kafkacat -C` |
 | Produce messages | `kafka-console-producer`  | `kafkacat -P` |
  
