@@ -40,7 +40,7 @@ cat content.txt | kafka-console-producer \
     --topic test
     
 # Using `kafkacat`
-kafkacat -b localhost:9092 -t test -P -l content.txt
+kafkacat -b localhost:9092 -P -t test -l content.txt
 ```
 
 # Consume messages
