@@ -1,6 +1,33 @@
-# Manage topics
+# What is Kafka
 
-## Using `kafka-topics`
+  * Scalable, Persistent Message Queue
+  
+## Message Queue
+
+## Persistent
+
+## Scalable
+
+# Take away notions
+  * Topic
+  * Partition
+  * Broker
+  * Zookeeper
+  * Producer
+  * Consumer
+   
+
+# Command-line tools
+
+| Operation | Standard tooling | Kafkacat |
+| ---       | ---              |  -----   |
+| Describe topics  | `kafka-topics --describe` | `kafkacat -L` |
+| Consume messages | `kafka-console-consumer`  | `kafkacat -C` |
+| Produce messages | `kafka-console-producer`  | `kafkacat -P` |
+
+## Manage topics
+
+### Using `kafka-topics`
 
 ```bash
 # Create topic
@@ -21,7 +48,7 @@ kafka-topics --bootstrap-server localhost:9092 --describe \
     --topic test2
 ```
 
-## Using `kafkacat`
+### Using `kafkacat`
 
 ```bash
 # Describe topics
@@ -31,7 +58,7 @@ kafkacat -b localhost:9092 -L
 kafkacat -b localhost:9092 -L -t test2
 ```
 
-# Produce messages
+## Produce messages
 
 ```bash
 # Using the official tooling `kafka-console-producer`
@@ -43,7 +70,7 @@ cat content.txt | kafka-console-producer \
 kafkacat -b localhost:9092 -P -t test -l content.txt
 ```
 
-# Consume messages
+## Consume messages
 
 ```bash
 # Using the official tooling

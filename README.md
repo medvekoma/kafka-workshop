@@ -1,22 +1,16 @@
 # Kafka Workshop
 
-## Cluster management
+This repo contains the examples and materials of the kafka worshop.
 
-In the `demo` folder there is a dockerized kafka environment.
+## Environment
+
+You can easily set up a dockerized test environment with the files
+from the `cluster` folder.
 
 ```bash
 # Create cluster
-docker-compose up -d
+./start.sh
 
 # Delete cluster
-docker-compose down
-```
-
-## Cluster operations
-
-| Operation | Standard tooling | Kafkacat |
-| ---       | ---              |  -----   |
-| Describe topics  | `kafka-topics --describe` | `kafkacat -L` |
-| Consume messages | `kafka-console-consumer`  | `kafkacat -C` |
-| Produce messages | `kafka-console-producer`  | `kafkacat -P` |
- 
+./stop.sh
+``` 
