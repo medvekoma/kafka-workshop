@@ -7,31 +7,43 @@
 1. Decouple source and target systems
 
    ![Message Queue](../img/mq.png)
-   (like messaging instead of phone calls)
+   * It is like messaging instead of phone calls - 
+   the message will eventually reach the recipient even if it is not available at the moment.
    
 1. Reduce integration complexity
 
    ![Integrations](../img/integrations.png)
+   * Instead of integrating each app with all others, it is enough to implement Kafka integration.
    * Each target system (consumer) is tracking its own progress.
 
 ## Persistent
 
    * Target system can be unavailable for hours (days).
-   * Messages are stored on disk. Retention time.
+   * Messages are stored on disk. Retention time can be set for each topic (default is 7 days).
 
 ## Scalable
 
    * Designed with scalability in mind. How to process and increasing number of messages? (millions of messages / second)
    
+### Topic
+  * A topic contains all messages that belong together from a logical point of view. 
+  * Kafka does not impose any restrictions on the content of the topic. 
+  * The messages within a topic usually have the same structure, but this is not a rule. 
+  In some cases it makes sense to have messages with different structure in the same  topic.
+
 ### Partitioning
    * Distribute the data across multiple machines (partitioning)  
+   * Partition count is a property of the topic.
    ![Paritions](../img/partitions.png)
    * Machines that hold the data are called Brokers.
+   * All brokers (together with the Zookeeper nodes) for a Kafka Cluster.
    ![Brokers](../img/broker-partition.png)
    
 ### Replication
    * The more nodes we have, the more likely is to have a breakdown
    ![Replication](../img/broker-replica.png)
+   * Each partition has a leader.
+   * Zookeeper is responsible (among other things) for leader re-election in case of a failure.
 
 # Take away notions
   * Topic
@@ -40,7 +52,6 @@
   * Zookeeper
   * Producer
   * Consumer
-   
 
 # Command-line tools
 
