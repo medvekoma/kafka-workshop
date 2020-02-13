@@ -1,0 +1,5 @@
+{ "time": "08:12", "card": 100011, "name": "Peter" }
+{ "time": "08:13", "card": 100012, "name": "Joe" }
+{ "time": "06:23", "card": 100013, "name": "Marianne" }
+{ "time": "10:10", "card": 100012, "name": "Joe" }
+{ "time": "10:10", "card": 100014 }
