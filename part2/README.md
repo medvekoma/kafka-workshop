@@ -50,7 +50,7 @@ kafkacat -b localhost:9092 -t test2 -P -K ','
 Messages with the same key go to the same partition.
 - Keys are not unique, they just control partitioning.
 - Message ordering is guaranteed only within the same partition.
-- Messages with the same key will be in order.
+- Messages with the same key will be in order (as long as you don't change the number of partitions).
 
 ## Consume messages like a pro ;)
 
@@ -134,7 +134,7 @@ kafka-consumer-groups --bootstrap-server localhost:9092 \
 
 ## Homework
 
-Watch linedin learning videos (10 mins total):
+Watch LinkedIn Learning videos (10 mins total):
 - [Producers and message keys](https://www.linkedin.com/learning/learn-apache-kafka-for-beginners/producers-and-message-keys)
 - [Consumers and consumer groups](https://www.linkedin.com/learning/learn-apache-kafka-for-beginners/consumer-and-consumer-group)
 
