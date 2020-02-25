@@ -57,3 +57,7 @@ kafka-consumer-groups \
     --describe \
     --group top-consumer
 ```
+
+### Watch video
+
+[Consumer offsets & Delivery Sema](https://www.linkedin.com/learning/learn-apache-kafka-for-beginners/consumer-offsets-and-delivery-semantics)

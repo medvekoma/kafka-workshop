@@ -17,7 +17,7 @@ public class Program {
                 StreamSupport.stream(records.spliterator(), true)
                     .map(record -> TopLine.fromString(record.value()))
                     .forEach(TopLine::prettyPrint);
-                consumer.commitAsync();
+//                consumer.commitAsync();
             }
         }
     }
