@@ -15,23 +15,23 @@ Consumer offsets, Delivery semantics
 ## Consumer offsets
 
 ```bash
-# Create app topic
+# Create topic
 kafka-topics --bootstrap-server localhost:9092 --create \
-    --topic apps \
+    --topic demo \
     --partitions 2 \
     --replication-factor 2
 
-# Check top-json command
-./top-json.sh
+# Check message generator
+./messages.sh
 
 # Produce 10 messages
-./top-json.sh | kafkacat -b localhost:9092 -t apps -P -K '\t' -c 10
+./messages.sh | kafkacat -b localhost:9092 -t demo -P -K '\t' -c 10
 
 # Check content
 kafka-console-consumer \
     --bootstrap-server localhost:9092 \
-    --topic apps \
-    --group top-consumer \
+    --topic demo \
+    --group demo-consumer \
     --from-beginning
 
 # Try again - for the second run nothing is returned.
@@ -55,7 +55,7 @@ Consumer group tracks progress and keeps a the current offset.
 kafka-consumer-groups \
     --bootstrap-server localhost:9092 \
     --describe \
-    --group top-consumer
+    --group demo-consumer
 ```
 
 ### Watch video

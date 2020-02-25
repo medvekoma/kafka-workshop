@@ -2,26 +2,26 @@ package com.epam.kafkacon;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class TopLine {
-    private Long pid;
-    private String app;
-    private String mem;
+public class DemoLine {
+    private Integer rand;
+    private String time;
+    private String text;
 
-    public Long getPid() {
-        return pid;
+    public Integer getRand() {
+        return rand;
     }
 
-    public String getApp() {
-        return app;
+    public String getTime() {
+        return time;
     }
 
-    public String getMem() {
-        return mem;
+    public String getText() {
+        return text;
     }
 
-    public static TopLine fromString(String text) {
+    public static DemoLine fromString(String json) {
         try {
-            return new ObjectMapper().readValue(text, TopLine.class);
+            return new ObjectMapper().readValue(json, DemoLine.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
