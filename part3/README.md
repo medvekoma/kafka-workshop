@@ -61,3 +61,15 @@ kafka-consumer-groups \
 ### Watch video
 
 [Consumer offsets & Delivery Sema](https://www.linkedin.com/learning/learn-apache-kafka-for-beginners/consumer-offsets-and-delivery-semantics)
+
+## Message Delivery Semantics
+
+* **At most once:**
+    - Set `enable.auto.commit` to `true`
+    - Set `auto.commit.interval.ms` to a small value
+* **At least once (preferred):**
+    - Set `enable.auto.commit` to `false`
+    - Commit offsets manually after successful processing
+    - Prepare for re-processing (idempotence)
+* **Exactly once:**
+    - Only in Kafka-to-kafka, skipped
