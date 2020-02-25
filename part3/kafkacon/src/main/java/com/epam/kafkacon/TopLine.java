@@ -1,9 +1,6 @@
 package com.epam.kafkacon;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
 
 public class TopLine {
     private Long pid;
@@ -30,9 +27,9 @@ public class TopLine {
         }
     }
 
-    public void dump() {
+    public void prettyPrint() {
         try {
-            System.out.println(new ObjectMapper().writeValueAsString(this));
+            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

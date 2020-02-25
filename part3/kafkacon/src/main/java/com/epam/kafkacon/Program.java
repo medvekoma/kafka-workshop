@@ -16,7 +16,7 @@ public class Program {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
                 StreamSupport.stream(records.spliterator(), true)
                     .map(record -> TopLine.fromString(record.value()))
-                    .forEach(TopLine::dump);
+                    .forEach(TopLine::prettyPrint);
                 consumer.commitAsync();
             }
         }
