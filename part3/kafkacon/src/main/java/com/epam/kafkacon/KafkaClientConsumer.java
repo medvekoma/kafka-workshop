@@ -17,7 +17,7 @@ public class KafkaClientConsumer implements AutoCloseable {
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-//        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // default true
+//        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true"); // default true
 //        props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "5000"); // default 5000
         consumer = new KafkaConsumer<>(props);
     }

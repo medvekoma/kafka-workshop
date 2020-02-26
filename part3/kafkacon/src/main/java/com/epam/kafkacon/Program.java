@@ -16,7 +16,6 @@ public class Program {
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 consumeStream(records);
-//                consumer.commitAsync();
             }
         }
     }
