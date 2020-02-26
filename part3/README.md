@@ -77,11 +77,33 @@ The consumer can be down for a long time(*) and can still continue from where it
 
 ### Message Delivery Semantics
 
-There are two hard problems in distrubuted systems:
+There are two hard problems in distributed systems:
 
     - 2. Exactly-once delivery
     - 1. Guaranteed order of messages
-    - 2. Exactly-once delivery 
+    - 2. Exactly-once delivery
+
+#### Demo
+
+```bash
+# Run kafkacon application
+
+# produce 10 messages
+./messages.sh | kafkacat -b localhost:9092 -t demo -P -K '\t' -c 10
+
+# produce incorrect message
+echo "this is not json" | kafkacat -b localhost:9092 -t demo -P
+
+# observe that the application failed
+
+# check consumer group
+kafka-consumer-groups \
+    --bootstrap-server localhost:9092 \
+    --describe \
+    --group demo-consumer
+
+# run application again
+```
 
 * **None:**
     - By default we don't have any guarantee 
@@ -98,6 +120,16 @@ There are two hard problems in distrubuted systems:
     - Limited availability, skipping now
 
 In the real world you will go with **At least once** delivery.
+
+#### Implement at least once delivery
+
+```java
+// disable auto committing offsets
+props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+
+// commit manually
+consumer.commitAsync();
+```
     
 # Homework
 
