@@ -76,12 +76,9 @@ The consumer can be down for a long time(*) and can still continue from where it
 * The consumer will continue from the stored offsets when restarted
 
 ### Message Delivery Semantics
-
-There are two hard problems in distributed systems:
-
-    - 2. Exactly-once delivery
-    - 1. Guaranteed order of messages
-    - 2. Exactly-once delivery
+* At most once
+* At least once
+* Exactly-once
 
 #### Demo
 
@@ -118,6 +115,10 @@ kafka-consumer-groups \
     - Prepare for re-processing (idempotence)
 * **Exactly once:**
     - Limited availability, skipping now
+    - There are two hard problems in distributed systems:
+        - `2. Exactly-once delivery`
+        - `1. Guaranteed order of messages`
+        - `2. Exactly-once delivery`        
 
 In the real world you will go with **At least once** delivery.
 
