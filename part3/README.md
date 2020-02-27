@@ -97,7 +97,7 @@ echo "this is not json" | kafkacat -b localhost:9092 -t demo -P
 kafka-consumer-groups \
     --bootstrap-server localhost:9092 \
     --describe \
-    --group demo-consumer
+    --group kafkacon-consumer-group
 
 # run application again
 ```
