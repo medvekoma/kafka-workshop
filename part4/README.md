@@ -23,13 +23,14 @@
 * Kafka is an infrastructure element, like a database.
 
 | Scenario | Database aspect | Kafka aspect |
-| -------- | --------------- | ------------ |
+| -------- | :-------------: | :----------: |
 | Test the tooling | - | - |
-| In memory | In memory DB | [Spring Kafka Test](https://blog.mimacom.com/testing-apache-kafka-with-spring-boot/) |
+| In memory | In memory DB | [Spring Kafka Test](https://blog.mimacom.com/testing-apache-kafka-with-spring-boot/), [Kafka Streams Test Utils](https://kafka.apache.org/21/documentation/streams/developer-guide/testing.html) |
 | Dockerized environment | DB running in Docker | Kafka/ZK running in Docker |
 | Dev environment | Dedicated db/table | Dedicated topic |
 | Dev env - live table | Delete test record | - |
-| Truncate | Truncate table | Set retention.ms to 1, set it back |
+| Truncate | Truncate table | Set retention.ms to 1, wait, set it back |
+| Integration Test | Check database values | ? (async) |
 
 * How to deal with the async nature of Kafka?
     * Demo
