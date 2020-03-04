@@ -30,20 +30,20 @@ public class AppTest
     @Test
     public void integrationTest() throws IOException, ExecutionException, InterruptedException {
 
-        // Create file
-        Path path = new File("/tmp/kafka4/input/it.txt").toPath();
-        Files.write(path, "something".getBytes());
-
         // Prepare consumer (observe latest)
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "it-group");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, String.format("it-group-%s", UUID.randomUUID()));
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
         try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(Collections.singletonList("test"));
+
+            // Create file
+            Path inputPath = new File("/tmp/kafka4/input/it.txt").toPath();
+            Files.write(inputPath, "something".getBytes());
 
             // poll records
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
@@ -66,7 +66,7 @@ public class AppTest
 
             long consumerOffset;
             do {
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 ListConsumerGroupOffsetsResult result = adminClient.listConsumerGroupOffsets("kafka4-group");
                 consumerOffset = result.partitionsToOffsetAndMetadata().get()
                         .get(topicPartition).offset();
@@ -74,7 +74,18 @@ public class AppTest
             } while (consumerOffset < itemOffset);
             System.out.println("Consumer group processed the message");
 
-            // eventually check for file created
+            File outputFile = new File("/tmp/kafka4/output/it.txt");
+            while (!outputFile.exists()) {
+                System.out.println("Waiting for file to be created...");
+            }
+            String content = new String(Files.readAllBytes(outputFile.toPath()));
+            System.out.println(String.format("File exists with content: %s", content));
+
+            assertEquals("Content doesn't match", "gnihtemos", content);
+
+            // cleanup
+            Files.delete(inputPath);
+            Files.delete(outputFile.toPath());
         }
     }
 }

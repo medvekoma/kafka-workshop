@@ -27,7 +27,7 @@ public class ConsumerThread extends Thread {
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record: records) {
-                    outputFileWriter.write(record.key(), record.value());
+                    outputFileWriter.writeReversed(record.key(), record.value());
                 }
             }
         } catch (IOException e) {

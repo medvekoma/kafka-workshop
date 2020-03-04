@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class OutputFileWriter {
     private final File inputDir;
@@ -13,8 +16,9 @@ public class OutputFileWriter {
         inputDir.mkdirs();
     }
 
-    public void write(String fileName, String content) throws IOException {
+    public void writeReversed(String fileName, String content) throws IOException {
         Path path = inputDir.toPath().resolve(fileName);
-        Files.write(path, content.getBytes());
+        String reversed = new StringBuilder(content).reverse().toString();
+        Files.write(path, reversed.getBytes());
     }
 }
