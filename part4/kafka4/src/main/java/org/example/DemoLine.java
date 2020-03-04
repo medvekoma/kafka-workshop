@@ -11,7 +11,8 @@ public class DemoLine {
         try {
             return new ObjectMapper().readValue(json, DemoLine.class);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
