@@ -12,11 +12,11 @@ import java.util.Properties;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 
-public class ProducerApp {
+public class ProducerThread extends Thread {
 
     private final static Integer FILE_SIZE = 10;
 
-    public static void run() throws IOException {
+    public void run() {
 
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -25,6 +25,8 @@ public class ProducerApp {
 
         try(KafkaProducer<String, String> producer = new KafkaProducer<>(props)) {
             waitForFiles(producer);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
