@@ -51,13 +51,16 @@ How to test it?
 * Unit test for the producer logic
 * Unit test for the consumer logic
 * Integration test - how to deal with the async nature of Kafka?
+
+Demo:
+* [Source code](kafka4/src/main/java/org/example)
+* [Test code](kafka4/src/test/java/org/example/AppTest.java)
     
 ## Intro to Kafka Streams
 
-* Demo
+* [Kafka Streams as a Consumer](kafka4/src/main/java/org/example/StreamsApp.java)
 
-## Ideas for future sessions
-- Message Compression
-- Acknowledgement
-- Idempotent Producer
-- Kafka Streams
+## Plans for the next session
+- Kafka Quiz (postponed from this session)
+- Spring Kafka Test
+- Kafka Streams in more detail (?)

@@ -62,16 +62,17 @@ public class AppTest
 
             Properties adminProps = new Properties();
             adminProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-            AdminClient adminClient = AdminClient.create(adminProps);
+            try(AdminClient adminClient = AdminClient.create(adminProps)){
+                long consumerOffset;
+                do {
+                    Thread.sleep(100);
+                    ListConsumerGroupOffsetsResult result = adminClient.listConsumerGroupOffsets("kafka4-group");
+                    consumerOffset = result.partitionsToOffsetAndMetadata().get()
+                            .get(topicPartition).offset();
+                    System.out.println(String.format("Offsets - item: %d, consumer: %d", itemOffset, consumerOffset));
+                } while (consumerOffset < itemOffset);
+            }
 
-            long consumerOffset;
-            do {
-                Thread.sleep(100);
-                ListConsumerGroupOffsetsResult result = adminClient.listConsumerGroupOffsets("kafka4-group");
-                consumerOffset = result.partitionsToOffsetAndMetadata().get()
-                        .get(topicPartition).offset();
-                System.out.println(String.format("Offsets - item: %d, consumer: %d", itemOffset, consumerOffset));
-            } while (consumerOffset < itemOffset);
             System.out.println("Consumer group processed the message");
 
             File outputFile = new File("/tmp/kafka4/output/it.txt");

@@ -1,10 +1,6 @@
 package org.example;
 
-import java.io.IOException;
-import java.lang.management.ThreadInfo;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class App
