@@ -30,14 +30,31 @@
 | Dev environment | Dedicated db/table | Dedicated topic |
 | Dev env - live table | Delete test record | - |
 | Truncate | Truncate table | Set retention.ms to 1, wait, set it back |
-| Integration Test | Check database values | ? (async) |
+| Integration Test | Check database values | Check messages ? (async) |
 
-* How to deal with the async nature of Kafka?
-    * Demo
+### Demo Application
+
+![Architecture](../img/kafka4-architecture.png)
+
+How to test it?
+
+.
+
+.
+
+.
+
+.
+
+.
+
+* Unit test for the producer logic
+* Unit test for the consumer logic
+* Integration test - how to deal with the async nature of Kafka?
     
 ## Intro to Kafka Streams
 
-* Demo  
+* Demo
 
 ## Ideas for future sessions
 - Message Compression

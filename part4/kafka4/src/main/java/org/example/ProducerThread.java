@@ -14,7 +14,7 @@ import static java.nio.file.StandardWatchEventKinds.*;
 
 public class ProducerThread extends Thread {
 
-    private final static Integer FILE_SIZE = 10;
+    private final static Integer FILE_SIZE_LIMIT = 10;
 
     public void run() {
 
@@ -35,7 +35,7 @@ public class ProducerThread extends Thread {
         File inputDir = new File("/tmp/kafka4/input");
         inputDir.mkdirs();
         WatchService watcher = FileSystems.getDefault().newWatchService();
-        inputDir.toPath().register(watcher, ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE);
+        inputDir.toPath().register(watcher, ENTRY_CREATE, ENTRY_MODIFY);
         while (true) {
             // wait for key to be signaled
             WatchKey key;
@@ -56,13 +56,10 @@ public class ProducerThread extends Thread {
                 Path filename = ev.context();
                 Path fullPath = inputDir.toPath().resolve(filename);
 
-                boolean clearEntry = kind == ENTRY_DELETE || fullPath.toFile().length() > FILE_SIZE;
-
-                String text = clearEntry
-                        ? ""
-                        : new String(Files.readAllBytes(fullPath)).trim();
-
-                producer.send(new ProducerRecord<>("test", filename.toString(), text));
+                if (fullPath.toFile().length() <= FILE_SIZE_LIMIT) {
+                    String text = new String(Files.readAllBytes(fullPath)).trim();
+                    producer.send(new ProducerRecord<>("test", filename.toString(), text));
+                }
             }
 
             boolean valid = key.reset();
