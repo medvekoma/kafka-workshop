@@ -1,2 +1,6 @@
-spring.kafka:
-  consumer.group-id: kafkapp5-group
+kafka:
+  bootstrap-servers: "localhost:9092"
+spring:
+  kafka:
+    consumer:
+      group-id: "kafka5"
