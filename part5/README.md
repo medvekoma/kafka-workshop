@@ -10,4 +10,9 @@ Spring Kafka
 Same application
 
 ![Architecture](../img/kafka4-architecture.png)
-(replace kafka4 with kafka5)
+
+The correct paths are
+```
+/tmp/kafka5/input
+/tmp/kafka5/output
+```
