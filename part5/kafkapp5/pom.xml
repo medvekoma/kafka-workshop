@@ -14,10 +14,6 @@
 	<name>kafkapp5</name>
 	<description>Kafka demo project for Spring Boot</description>
 
-	<properties>
-		<java.version>13</java.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
