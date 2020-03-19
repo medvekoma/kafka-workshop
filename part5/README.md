@@ -1,9 +1,11 @@
 # Session 5
 
-Spring Kafka
+1. Kafka Quiz
+1. Discuss Quiz
+1. Intro to Spring Kafka
 
 ## Kafka Quiz
-- Take out your smartphones and follow instructions.
+- Use your smartphones and follow instructions.
 
 ## Spring Kafka
 
