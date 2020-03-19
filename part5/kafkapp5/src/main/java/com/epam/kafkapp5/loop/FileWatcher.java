@@ -1,4 +1,4 @@
-package com.epam.kafkapp5;
+package com.epam.kafkapp5.loop;
 
 import java.io.File;
 import java.io.IOException;

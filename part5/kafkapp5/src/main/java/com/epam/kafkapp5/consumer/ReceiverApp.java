@@ -7,7 +7,7 @@ public class ReceiverApp {
 
     private final OutputFileWriter outputFileWriter = new OutputFileWriter();
 
-    @KafkaListener(topics = "test")
+    @KafkaListener(topics = {"test"})
     public void listen(ConsumerRecord<String, String> r) throws Exception {
         outputFileWriter.writeReversed(r.key(), r.value());
     }

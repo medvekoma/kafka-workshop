@@ -3,4 +3,7 @@ kafka:
 spring:
   kafka:
     consumer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers}
       group-id: "kafka5-test"
+    producer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers}
