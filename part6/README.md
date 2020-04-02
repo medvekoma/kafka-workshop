@@ -53,3 +53,14 @@ Change Names
 PL,Polska
 HU,Magyarország
 ```
+
+You can also try to introduce incorrect values to the `entity` topic - 
+they should be routed to the `incorrect` topic.
+
+## Homework
+
+Watch the following video (4 mins):
+* [Kafka Streams Introduction](https://www.linkedin.com/learning/learn-apache-kafka-for-beginners/kafka-streams-introduction?autoplay=true&u=2113185)
+
+Read this article:
+* [Streams and Tables in Apache Kafka](https://www.confluent.io/blog/kafka-streams-tables-part-1-event-streaming/)

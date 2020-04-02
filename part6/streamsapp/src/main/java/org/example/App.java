@@ -32,10 +32,17 @@ public class App
 
         entityStream
                 .mapValues(Entity::fromString)
+                .filter((key,value) -> value != null)
                 .map((key, value) -> KeyValue.pair(value.code, value.asString()))
                 .leftJoin(countries, (entityString, country) -> new EnrichedEntity(entityString, country).asString())
                 .filter((key, value) -> Arrays.asList("HU", "PL", "RU").contains(key))
                 .to("enriched");
+
+        entityStream
+                .map((key, value) -> KeyValue.pair(value, Entity.fromString(value)))
+                .filter((key,value) -> value == null)
+                .map((key, value) -> KeyValue.pair(key, key))
+                .to("incorrect");
 
         KafkaStreams streams = new KafkaStreams(builder.build(), config);
 
