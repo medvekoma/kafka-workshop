@@ -8,6 +8,7 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KTable;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 /**
@@ -33,6 +34,7 @@ public class App
                 .mapValues(Entity::fromString)
                 .map((key, value) -> KeyValue.pair(value.code, value.asString()))
                 .leftJoin(countries, (entityString, country) -> new EnrichedEntity(entityString, country).asString())
+                .filter((key, value) -> Arrays.asList("HU", "PL", "RU").contains(key))
                 .to("enriched");
 
         KafkaStreams streams = new KafkaStreams(builder.build(), config);

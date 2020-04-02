@@ -1,6 +1,27 @@
 # Introduction to Kafka Streams
 
-## Produce messages
+## Concept
+
+* Easy data processing and transformation library with Kafka.
+* Combines consumer(s) with producer(s).
+
+![Streams](../img/streams.png)
+
+### Stream
+
+* An unbounded stream of events in Kafka.
+* It maps to a Kafka topic, each message in the topic is a stream element.
+
+### Table
+
+* In its simplest form it is a list of (key, value) pairs.
+* It can get updates - entries with the same key "overwrite" the previous record.
+* Represent the current state.
+* A Kafka topic can be mapped to a table - the table will hold the latest value for every key. 
+
+![table](../img/table.png)
+
+## Demo
 
 ```bash
 # Create topics
