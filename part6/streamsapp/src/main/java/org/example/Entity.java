@@ -2,22 +2,22 @@ package org.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class CountryCode {
+public class Entity {
     public String time;
     public String code;
 
-    public static CountryCode fromString(String json) {
+    public static Entity fromString(String json) {
         try {
-            return new ObjectMapper().readValue(json, CountryCode.class);
+            return new ObjectMapper().readValue(json, Entity.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void prettyPrint() {
+    public String asString() {
         try {
-            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this));
+            return new ObjectMapper().writeValueAsString(this);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

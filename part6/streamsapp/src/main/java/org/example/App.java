@@ -25,15 +25,15 @@ public class App
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> codeStream = builder.stream("code");
+        KStream<String, String> entityStream = builder.stream("entity");
 
-        KTable<String, String> nameTable = builder.table("name");
+        KTable<String, String> countries = builder.table("country");
 
-        codeStream
-                .map((key, value) -> KeyValue.pair(key, CountryCode.fromString(value)))
-                .map((key, value) -> KeyValue.pair(value.code, value.time))
-                .leftJoin(nameTable, (code, name) -> String.format("%s, %s", code, name))
-                .to("codename");
+        entityStream
+                .mapValues(Entity::fromString)
+                .map((key, value) -> KeyValue.pair(value.code, value.asString()))
+                .leftJoin(countries, (entityString, country) -> new EnrichedEntity(entityString, country).asString())
+                .to("enriched");
 
         KafkaStreams streams = new KafkaStreams(builder.build(), config);
 
